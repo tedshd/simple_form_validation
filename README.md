@@ -29,6 +29,20 @@ It only validate input value.
 
 ### Sample
 
+Use jQuery as sample.
+
+```html
+<form id="form" action="">
+    <label class="material-design-label" for="email">E-mail</label>
+    <input class="validate-option" id="email" type="text">
+    <button type="submit">Submit</button>
+</form>
+```
+
 ```javascript
 var validateForm = new validateForm;
+$('#form').on('submit', function(e) {
+    e.preventDefault();
+    alert(validateForm.email($('#form input').val(), 'Email Error'));
+});
 ```

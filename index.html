@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>validation</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<script src="../../lib/jquery-1.10.1.js"></script>
+<!-- <script src="/lib/angular_v1.2.16.js"></script> -->
+<link rel="stylesheet" href="/lib/bootstrap-3.0.0/css/bootstrap.css">
+<link rel="stylesheet" href="https://rawgithub.com/tedshd/material_design_for_web/master/css/material_design_form.css">
+<script src="https://rawgithub.com/tedshd/material_design_for_web/master/javascript/material_design_form.js"></script>
+</head>
+<body>
+    <form id="form_1" class="material-design-form" action="">
+        <div class="input-group">
+            <input class="validate-option" id="email" type="text">
+            <label class="material-design-label" for="">E-mail</label>
+        </div>
+        <div id="pwd" class="input-group">
+            <input class="validate-option" type="password">
+            <label class="material-design-label" for="">PassWord</label>
+        </div>
+        <div class="error-msg"></div>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+<script src="simple_form_validation.js"></script>
+<script>
+
+    var validateForm = new window.validateForm;
+    var requiredStatus = 'pass';
+
+    // form_1
+
+    $('#form_1').on('submit', function(e) {
+        e.preventDefault();
+        for (var i = 0; i < $('form .validate-option').length; i++) {
+            validate($('form .validate-option:eq('+ i +')'));
+        }
+        validateEmail();
+    });
+    $('#form_1 input').on('blur', function() {
+        validate($(this));
+        for (var i = 0; i < $('form .validate-option').length; i++) {
+            if (validateForm.required($('form .validate-option:eq('+ i +')').val()) !== 'pass') {
+                requiredStatus = 'fail';
+                $('form .validate-option:eq('+ i +')').parent().addClass('input-error');
+                $('#form_1 .error-msg').html(validateForm.required($('form .validate-option:eq('+ i +')').val()));
+                return;
+            } else {
+                requiredStatus = 'pass';
+            }
+        }
+        validateEmail();
+    });
+    function validateEmail() {
+        var email = validateForm.email($('#email').val());
+        if (requiredStatus === 'pass' && email !== 'pass') {
+            console.log(email);
+            $('#email').parent().addClass('input-error');
+            $('#form_1 .error-msg').html(email);
+            return;
+        } else if (email === 'pass') {
+            $('#email').parent().removeClass('input-error');
+        }
+    }
+    function validate(input) {
+        console.log(input.parent());
+        console.log(validateForm.required(input.val()));
+        var required = validateForm.required(input.val());
+        if (required !== 'pass') {
+            requiredStatus = 'fail';
+            input.parent().addClass('input-error');
+            $('#form_1 .error-msg').html(required);
+        } else {
+            requiredStatus = 'pass';
+            input.parent().removeClass('input-error');
+            $('#form_1 .error-msg').html('');
+        }
+    }
+
+
+
+</script>
+</html>

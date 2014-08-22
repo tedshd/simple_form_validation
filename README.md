@@ -7,6 +7,14 @@ simple form validation provide validate format and return result
 
 It only validate input value.
 
+### Feature
+
+* Simple
+
+* Only provide value validate and return result
+
+* Developer can handle logic in their form validate
+
 ### Usage
 
 #### Method
@@ -31,6 +39,8 @@ It only validate input value.
 
 Use jQuery as sample.
 
+HTML
+
 ```html
 <form id="form" action="">
     <label class="material-design-label" for="email">E-mail</label>
@@ -38,6 +48,8 @@ Use jQuery as sample.
     <button type="submit">Submit</button>
 </form>
 ```
+
+JavaScript
 
 ```javascript
 var validateForm = new validateForm;

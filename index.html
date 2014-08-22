@@ -12,6 +12,15 @@
 <script src="https://rawgithub.com/tedshd/material_design_for_web/master/javascript/material_design_form.js"></script>
 </head>
 <body>
+    <h2>Basic Form validate</h2>
+    <form id="form" class="material-design-form" action="">
+        <div class="input-group">
+            <input class="validate-option" id="" type="text">
+            <label class="material-design-label" for="">E-mail</label>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    <h2>Advance Form vaildate</h2>
     <form id="form_1" class="material-design-form" action="">
         <div class="input-group">
             <input class="validate-option" id="email" type="text">
@@ -29,23 +38,31 @@
 <script>
 
     var validateForm = new window.validateForm;
-    var requiredStatus = 'pass';
 
-    // form_1
+    // Basic Form validate
+
+    $('#form').on('submit', function(e) {
+        e.preventDefault();
+        alert(validateForm.email($('#form input').val(), 'Email Error'));
+    });
+
+    // Advance Form vaildate
+
+    var requiredStatus = 'pass';
 
     $('#form_1').on('submit', function(e) {
         e.preventDefault();
-        for (var i = 0; i < $('form .validate-option').length; i++) {
-            validate($('form .validate-option:eq('+ i +')'));
+        for (var i = 0; i < $('#form_1 .validate-option').length; i++) {
+            validate($('#form_1 .validate-option:eq('+ i +')'));
         }
         validateEmail();
     });
     $('#form_1 input').on('blur', function() {
         validate($(this));
-        for (var i = 0; i < $('form .validate-option').length; i++) {
-            if (validateForm.required($('form .validate-option:eq('+ i +')').val()) !== 'pass') {
+        for (var i = 0; i < $('#form_1 .validate-option').length; i++) {
+            if (validateForm.required($('#form_1 .validate-option:eq('+ i +')').val()) !== 'pass') {
                 requiredStatus = 'fail';
-                $('form .validate-option:eq('+ i +')').parent().addClass('input-error');
+                $('#form_1 .validate-option:eq('+ i +')').parent().addClass('input-error');
                 $('#form_1 .error-msg').html(validateForm.required($('form .validate-option:eq('+ i +')').val()));
                 return;
             } else {
@@ -79,7 +96,6 @@
             $('#form_1 .error-msg').html('');
         }
     }
-
 
 
 </script>

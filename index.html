@@ -74,7 +74,6 @@
     function validateEmail() {
         var email = validateForm.email($('#email').val());
         if (requiredStatus === 'pass' && email !== 'pass') {
-            console.log(email);
             $('#email').parent().addClass('input-error');
             $('#form_1 .error-msg').html(email);
             return;
@@ -83,8 +82,6 @@
         }
     }
     function validate(input) {
-        console.log(input.parent());
-        console.log(validateForm.required(input.val()));
         var required = validateForm.required(input.val());
         if (required !== 'pass') {
             requiredStatus = 'fail';

@@ -16,9 +16,9 @@
             }
         }
         function email(validateInput, errorMsg) {
-            var atpos = validateInput.indexOf('@'),
-                dotpos = validateInput.lastIndexOf('.');
-            if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= validateInput.length) {
+            var filter = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
+                result = validateInput.match(filter);
+            if (result === null) {
                 return errorMsg || 'Not a valid e-mail address';
             } else {
                 return 'pass';

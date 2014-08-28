@@ -39,10 +39,22 @@
                 return 'pass';
             }
         }
+        function engNum(validateInput, errorMsg) {
+            var filterEng = /[a-zA-Z]/,
+                filterNum = /[0-9]/,
+                resultEng = validateInput.match(filterEng),
+                resultNum = validateInput.match(filterNum);
+            if (resultEng === null || resultNum === null) {
+                return errorMsg || 'String not match';
+            } else {
+                return 'pass';
+            }
+        }
 
         this.required = required;
         this.email = email;
         this.stringLength = stringLength;
+        this.engNum = engNum;
     }
 
     window.validateForm = validateForm;

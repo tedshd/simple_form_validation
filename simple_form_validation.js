@@ -42,7 +42,7 @@
         function engNum(validateInput, errorMsg) {
             var filterEng = /[a-zA-Z]/,
                 filterNum = /[0-9]/,
-                filterCh = /[^\w=@&]|_/ig, // check chinese
+                filterCh = /[\u4E00-\u9FA5]/, // check chinese
                 resultEng = validateInput.match(filterEng),
                 resultNum = validateInput.match(filterNum),
                 resultCh = validateInput.match(filterCh);

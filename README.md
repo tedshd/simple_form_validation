@@ -20,16 +20,19 @@ It only validate input value.
 #### Method
 
 * required(validateInput, errorMsg)
+
     Check required input
     * validateInput(string): input DOM value
     * errorMsg(string): custom error message want show
 
 * email(validateInput, errorMsg)
+
     Check email format
     * validateInput(string): input DOM value
     * errorMsg(string): custom error message want show
 
 * stringLength(validateInput, min, max, errorMsgMin, errorMsgMax)
+
     Check string length limit
     * validateInput(string): input DOM value
     * min(number): number want limit min
@@ -38,6 +41,7 @@ It only validate input value.
     * errorMsgMax(string): custom error message want show
 
 * engNum(validateInput, errorMsg)
+
     Must include english string and number
     * validateInput(string): input DOM value
     * errorMsg(string): custom error message want show

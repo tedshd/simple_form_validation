@@ -42,9 +42,11 @@
         function engNum(validateInput, errorMsg) {
             var filterEng = /[a-zA-Z]/,
                 filterNum = /[0-9]/,
+                filterCh = /[^\w=@&]|_/ig, // check chinese
                 resultEng = validateInput.match(filterEng),
-                resultNum = validateInput.match(filterNum);
-            if (resultEng === null || resultNum === null) {
+                resultNum = validateInput.match(filterNum),
+                resultCh = validateInput.match(filterCh);
+            if (resultEng === null || resultNum === null || resultCh) {
                 return errorMsg || 'String not match';
             } else {
                 return 'pass';

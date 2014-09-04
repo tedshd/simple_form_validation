@@ -11,6 +11,8 @@ It only validate input value.
 
 * Simple
 
+* only JavaScript
+
 * Only provide value validate and return result
 
 * Developer can handle logic in their form validate

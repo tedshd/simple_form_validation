@@ -46,6 +46,12 @@ It only validate input value.
     * validateInput(string): input DOM value
     * errorMsg(string): custom error message want show
 
+* allBlank(validateInput, errorMsg)
+
+    Check input all whitespace
+    * validateInput(string): input DOM value
+    * errorMsg(string): custom error message want show
+
 ### Sample
 
 Use jQuery as sample.

@@ -33,12 +33,20 @@
         <div class="error-msg"></div>
         <button type="submit">Submit</button>
     </form>
-    <h2>number and eng validate</h2>
+    <h2>only number and eng validate</h2>
     <form id="form_2" class="material-design-form" action="">
         <div class="input-group">
             <!-- <input class="validate-option" id="eng-num" type="text" onkeyup="value=value.replace(/[^\w=@&]|_/ig,'')"> -->
             <input class="validate-option" id="eng-num" type="text">
             <label class="material-design-label" for="">num & eng</label>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    <h2>all blank validate</h2>
+    <form id="form_3" class="material-design-form" action="">
+        <div class="input-group">
+            <input class="validate-option" id="blank" type="text">
+            <label class="material-design-label" for="">not blank</label>
         </div>
         <button type="submit">Submit</button>
     </form>
@@ -107,6 +115,10 @@
     $('#form_2').on('submit', function(e) {
         e.preventDefault();
         alert(validateForm.engNum($('#eng-num').val()));
+    });
+    $('#form_3').on('submit', function(e) {
+        e.preventDefault();
+        alert(validateForm.allBlank($('#blank').val()));
     });
 </script>
 </html>

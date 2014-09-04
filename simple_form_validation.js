@@ -53,10 +53,21 @@
             }
         }
 
+        function allBlank(validateInput, errorMsg) {
+            var filterAllBlank = /[a-zA-Z0-9/s]/,
+                resultAllBlank = validateInput.match(filterAllBlank);
+            if (resultAllBlank === null) {
+                return errorMsg || 'all blank';
+            } else {
+                return 'pass';
+            }
+        }
+
         this.required = required;
         this.email = email;
         this.stringLength = stringLength;
         this.engNum = engNum;
+        this.allBlank = allBlank;
     }
 
     window.validateForm = validateForm;

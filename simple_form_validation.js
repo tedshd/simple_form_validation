@@ -54,7 +54,7 @@
         }
 
         function allBlank(validateInput, errorMsg) {
-            var filterAllBlank = /[a-zA-Z0-9/s]/,
+            var filterAllBlank = /[\S]/,
                 resultAllBlank = validateInput.match(filterAllBlank);
             if (resultAllBlank === null) {
                 return errorMsg || 'all blank';

@@ -52,6 +52,16 @@
                 return 'pass';
             }
         }
+        
+        function num(validateInput, errorMsg) {
+            var filterNum = /[0-9]/,
+                resultNum = validateInput.match(filterNum);
+            if (resultNum === null) {
+                return errorMsg || 'String not match';
+            } else {
+                return 'pass';
+            }
+        }
 
         function allBlank(validateInput, errorMsg) {
             var filterAllBlank = /[\S]/,
@@ -67,6 +77,7 @@
         this.email = email;
         this.stringLength = stringLength;
         this.engNum = engNum;
+        this.num = num;
         this.allBlank = allBlank;
     }
 

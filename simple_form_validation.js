@@ -52,7 +52,7 @@
                 return 'pass';
             }
         }
-        
+
         function num(validateInput, errorMsg) {
             var filterNum = /[0-9]/,
                 resultNum = validateInput.match(filterNum);
@@ -71,6 +71,30 @@
             } else {
                 return 'pass';
             }
+        }
+
+        function peopleId(validateInput, errorMsg) {
+            if (validateInput.length !== 10) {
+                return errorMsg || 'inconsistent length';
+            }
+            if (!/(^[A-Za-z][12][\d]{8}$)|([A-Za-z][A-Da-d][\d]{8}$)/.test(validateInput)) {
+                return errorMsg || 'inconsistent id';
+            }
+
+            validateInput = validateInput.toUpperCase();
+            var codes = '0123456789ABCDEFGHJKLMNPQRSTUVXYWZIO';
+            var pidCodes = {};
+            codes.split('').forEach(function(element, index, array){
+                console.log(element, index, array);
+                pidCodes[element] = index;
+            });
+            var sum = 0;
+            for ( var i=8; i>0; i--) {
+            sum += parseInt(pidCodes[validateInput.charAt(i)]) * (9-i);
+            console.log( sum + '- ' + validateInput.charAt(i) + '= ' + parseInt(pidCodes[validateInput.charAt(i)]) * (9-i));
+            }
+            var checkDigit = 10 - (sum + parseInt(pidCodes[validateInput.charAt(0)])%10*9 + parseInt(parseInt(pidCodes[validateInput.charAt(0)]/10)))%10;
+            return checkDigit === parseInt(validateInput.slice(-1)) ? '身分證字號檢核正確' : '身分證字號檢核不正確';
         }
 
         this.required = required;

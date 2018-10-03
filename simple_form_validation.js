@@ -105,6 +105,7 @@
         this.engNum = engNum;
         this.num = num;
         this.allBlank = allBlank;
+        this.peopleId = peopleId;
     }
 
     window.validateForm = validateForm;

@@ -50,6 +50,14 @@
         </div>
         <button type="submit">Submit</button>
     </form>
+    <h2>people id validate</h2>
+    <form id="form_4" class="material-design-form" action="">
+        <div class="material-input-group">
+            <input class="validate-option" id="peopleId" type="text">
+            <label class="material-design-label" for="">People id</label>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
 </body>
 <script src="simple_form_validation.js"></script>
 <script>
@@ -119,6 +127,10 @@
     $('#form_3').on('submit', function(e) {
         e.preventDefault();
         alert(validateForm.allBlank($('#blank').val()));
+    });
+    $('#form_4').on('submit', function(e) {
+        e.preventDefault();
+        alert(validateForm.peopleId($('#peopleId').val()));
     });
 </script>
 </html>

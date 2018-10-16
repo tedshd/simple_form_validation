@@ -77,25 +77,36 @@
             if (validateInput.length !== 10) {
                 return errorMsg || 'inconsistent length';
             }
+
             if (!/(^[A-Za-z][12][\d]{8}$)|([A-Za-z][A-Da-d][\d]{8}$)/.test(validateInput)) {
                 return errorMsg || 'inconsistent id';
             }
 
-            validateInput = validateInput.toUpperCase();
-            var codes = '0123456789ABCDEFGHJKLMNPQRSTUVXYWZIO';
-            var pidCodes = {};
-            codes.split('').forEach(function(element, index, array){
-                pidCodes[element] = index;
-            });
-            var sum = 0;
-            for ( var i=8; i>0; i--) {
-                sum += parseInt(pidCodes[validateInput.charAt(i)]) * (9-i);
-            }
-            var checkDigit = 10 - (sum + parseInt(pidCodes[validateInput.charAt(0)])%10*9 + parseInt(parseInt(pidCodes[validateInput.charAt(0)]/10)))%10;
-            if (checkDigit === parseInt(validateInput.slice(-1))) {
-                return 'pass';
-            } else {
+            var enCode = 'ABCDEFGHJKLMNPQRSTUVXYWZIO',
+                enCodeMatch = ['10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35'],
+                tmp = validateInput.split(''),
+                en = tmp[0].toUpperCase();
+
+            if (enCode.indexOf(en) === -1) {
                 return errorMsg || 'inconsistent id';
+            }
+
+            var enMatch = enCodeMatch[enCode.indexOf(en)].split('');
+
+            tmp.shift();
+
+            var matchArr = enMatch.concat(tmp);
+
+            for (var i = 0; i < matchArr.length; i++) {
+                matchArr[i] = parseInt(matchArr[i], 10);
+            }
+
+            var val = matchArr[0] + 9*matchArr[1] + 8*matchArr[2] + 7*matchArr[3] + 6*matchArr[4] + 5*matchArr[5] + 4*matchArr[6] + 3*matchArr[7] + 2*matchArr[8]+ 1*matchArr[9] + matchArr[10];
+
+            if (val%10) {
+                return errorMsg || 'inconsistent id';
+            } else {
+                return 'pass';
             }
         }
 

@@ -110,6 +110,42 @@
             }
         }
 
+        function mobilePhone(validateInput, errorMsg) {
+            var filterPhone = /^09[0-9]{8}$/,
+                resultPhone = validateInput.match(filterPhone);
+            if (resultPhone === null) {
+                return errorMsg || 'mobilePhone not match';
+            } else {
+                return 'pass';
+            }
+        }
+
+        function telephone(country, validateInput, errorMsg) {
+            if (!country) {
+                console.error('validateForm telephone: country not set');
+                return;
+            }
+            var resultPhone = true;
+            switch (country) {
+                case 'tw':
+                    var filterPhone1 = /^0[0-9]{9}$/,
+                        filterPhone2 = /^0[0-9]{10}$/;
+                    if (validateInput.match(filterPhone1) === null &&
+                        validateInput.match(filterPhone2) === null) {
+                        resultPhone = false;
+                    }
+                    break;
+                default:
+                    console.error('validateForm telephone: country not match');
+                    break;
+            }
+            if (!resultPhone) {
+                return errorMsg || 'telephone not match';
+            } else {
+                return 'pass';
+            }
+        }
+
         this.required = required;
         this.email = email;
         this.stringLength = stringLength;
@@ -117,6 +153,8 @@
         this.num = num;
         this.allBlank = allBlank;
         this.peopleId = peopleId;
+        this.mobilePhone = mobilePhone;
+        this.telephone = telephone;
     }
 
     window.validateForm = validateForm;

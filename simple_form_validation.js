@@ -24,6 +24,15 @@
                 return 'pass';
             }
         }
+        function url(validateInput, errorMsg) {
+            var filter = /^(https?|http):\/\/[^\s$.?#].[^\s]*$/gm,
+                result = validateInput.match(filter);
+            if (result === null) {
+                return errorMsg || 'URL format error';
+            } else {
+                return 'pass';
+            }
+        }
         function stringLength(validateInput, min, max, errorMsgMin, errorMsgMax) {
             if (min < 0) {
                 min = 0;
@@ -148,6 +157,7 @@
 
         this.required = required;
         this.email = email;
+        this.url = url;
         this.stringLength = stringLength;
         this.engNum = engNum;
         this.num = num;
